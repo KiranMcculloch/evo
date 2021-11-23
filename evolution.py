@@ -11,26 +11,26 @@ pygame.display.init()
 pygame.font.init()
 # load and set the logo
 pygame.display.set_caption("Evolution")
- 
+
 # create window
 window = pygame.display.set_mode((1280,720))
 baba_Texture = pygame.image.load(os.path.join('images','baba.png'))
 baba = creature((640,360),baba_Texture)
 
-food_Texture = pygame.image.load(os.path.join('images','apple.png')) 
+food_Texture = pygame.image.load(os.path.join('images','apple.png'))
 foodCoords = []
 
 def generateFood():
     for i in range(15):
         foodCoords.append((random.randrange(1280),random.randrange(720)))
-            
-        
+
+
 def main():
     # define a variable to control the main loop
     running = True
     black = (0,0,0)
     generateFood()
-    
+
     # main loop
     while running:
         if baba.state != 0:
@@ -49,9 +49,9 @@ def main():
         if baba.state == 0 and len(foodCoords) >= 1:
             closestFoodCoords = baba.findNearest(foodCoords)
             baba.moveToPoint(closestFoodCoords[0],closestFoodCoords[1])
-        
-            
-    
+
+
+
         # event handling, gets all event from the event queue
         for event in pygame.event.get():
             if event.type == pygame.KEYUP:
@@ -68,5 +68,5 @@ def main():
                 running = False
                 pygame.quit()
 
-main()
-     
+if __name__ == '__main__':
+    main()
